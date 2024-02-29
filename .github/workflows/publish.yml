@@ -1,0 +1,45 @@
+name: Publish NuGet Package
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  BUILD_CONFIG: Release
+
+jobs:
+  Publish:
+    name: Publish NuGet Package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Install .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.x'
+
+      - name: Versioning
+        uses: dotnet/nbgv@v0.4.2
+
+      - name: Restore packages
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build -c ${{env.BUILD_CONFIG}} --no-restore
+
+      - name: Pack
+        run: dotnet pack -c ${{env.BUILD_CONFIG}} --no-restore --no-build
+
+      - name: Push to NuGet
+        run: dotnet nuget push **\*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json

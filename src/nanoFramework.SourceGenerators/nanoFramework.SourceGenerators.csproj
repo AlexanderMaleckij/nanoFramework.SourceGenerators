@@ -1,0 +1,57 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- Do not include the generator as a lib dependency -->
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+
+    <!-- There are no lib/ref assemblies and it is expected -->
+    <NoWarn>NU5128</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+    <PackageId>amaletski.nanoFramework.SourceGenerators</PackageId>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <RequireLicenseAcceptance>true</RequireLicenseAcceptance>
+    <Authors>Aliaksandr Maletski</Authors>
+    <Description>This package includes a source generator that calculates binary resources metadata from a .resx file and generates a provider class to return this metadata.</Description>
+    <PackageTags>nanoFramework;MSBuild;C#;csharp;netnf;ResourceManager;ResX</PackageTags>
+    <PackageProjectUrl>https://github.com/AlexanderMaleckij/nanoFramework.SourceGenerators</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/AlexanderMaleckij/nanoFramework.MSBuildTasks</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE" Pack="true" Visible="false" PackagePath="\" />
+    <None Include="..\..\README.md" Pack="true" Visible="false" PackagePath="\" />
+    <None Include="nuget\**" Pack="true" PackagePath="\" />
+
+    <!-- Package the generator in the analyzer directory of the nuget package -->
+    <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.9.2" />
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.6.133">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="ResXResourceReader.NetStandard.StrongName" Version="1.2.0" GeneratePathProperty="true" />
+    <PackageReference Include="TestableIO.System.IO.Abstractions" Version="20.0.15" GeneratePathProperty="true" />
+    <PackageReference Include="TestableIO.System.IO.Abstractions.Wrappers" Version="20.0.15" GeneratePathProperty="true" />
+
+    <!-- marks all packages as 'local only' so they don't end up in the nuspec -->
+    <PackageReference Update="@(PackageReference)" PrivateAssets="All" />
+
+    <None Include="$(PkgResXResourceReader_NetStandard_StrongName)\lib\$(TargetFramework)\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    <None Include="$(PkgTestableIO_System_IO_Abstractions)\lib\$(TargetFramework)\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    <None Include="$(PkgTestableIO_System_IO_Abstractions_Wrappers)\lib\$(TargetFramework)\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+  </ItemGroup>
+</Project>

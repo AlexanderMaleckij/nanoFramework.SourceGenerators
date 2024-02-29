@@ -1,0 +1,12 @@
+﻿<Project>
+  <ItemGroup>
+    <CompilerVisibleItemMetadata Include="AdditionalFiles" MetadataName="ResourceMetadata_IncludeName" />
+    <CompilerVisibleItemMetadata Include="AdditionalFiles" MetadataName="ResourceMetadata_IncludeUriPath" />
+    <CompilerVisibleItemMetadata Include="AdditionalFiles" MetadataName="ResourceMetadata_IncludeSize" />
+    <CompilerVisibleItemMetadata Include="AdditionalFiles" MetadataName="ResourceMetadata_IncludeContentType" />
+    <CompilerVisibleItemMetadata Include="AdditionalFiles" MetadataName="ResourceMetadata_IncludeContentEncoding" />
+    <CompilerVisibleItemMetadata Include="AdditionalFiles" MetadataName="ResourcesMetadataProvider_Generate" />
+    <CompilerVisibleItemMetadata Include="AdditionalFiles" MetadataName="ResourcesMetadataProvider_GenerateFindByName" />
+    <CompilerVisibleItemMetadata Include="AdditionalFiles" MetadataName="ResourcesMetadataProvider_GenerateFindByUriPath" />
+  </ItemGroup>
+</Project>
