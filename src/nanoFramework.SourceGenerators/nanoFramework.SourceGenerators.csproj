@@ -19,7 +19,7 @@
     <RequireLicenseAcceptance>true</RequireLicenseAcceptance>
     <Authors>Aliaksandr Maletski</Authors>
     <Description>This package includes a source generator that calculates binary resources metadata from a .resx file and generates a provider class to return this metadata.</Description>
-    <PackageTags>nanoFramework;MSBuild;C#;csharp;netnf;ResourceManager;ResX</PackageTags>
+    <PackageTags>nanoFramework;SourceGenerators;C#;csharp;netnf;ResourceManager;ResX</PackageTags>
     <PackageProjectUrl>https://github.com/AlexanderMaleckij/nanoFramework.SourceGenerators</PackageProjectUrl>
     <RepositoryUrl>https://github.com/AlexanderMaleckij/nanoFramework.MSBuildTasks</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
